@@ -13,11 +13,10 @@ import {
 import {useContext} from 'react'
 import { DarkModeContext, DarkModeProvider } from "./utilities/darkModeContext";
 import { DarkModeContextType } from "./@types/context";
-import Test from "./test";
 
 
 
-export default function App() {
+export default function Test() {
 
   const { toggleDarkMode, darkMode } = useContext(DarkModeContext) as DarkModeContextType
 
@@ -25,11 +24,38 @@ export default function App() {
   
   
   return (
-    <DarkModeProvider>
     
-    <Test />
-   
-    </DarkModeProvider>
+    
+    
+    
+    <div
+      className={`h-screen w-full flex items-center  flex-col ${
+        darkMode && 'dark'
+      }`}
+    >
+    <section >
+  <Router>
+    <EntryProvider>
+    <NavBar ></NavBar>
+      <Routes>
+        <Route path="/" element={<AllEntries/>}>
+        </Route>
+        <Route path="create" element={<NewEntry/>}>
+        </Route>
+        <Route path="edit/:id" element={<EditEntry/>}>
+        </Route>
+        <Route path="setting" element={<Setting/>}>
+        </Route>
+      </Routes>
+    </EntryProvider>
+    </Router>
+    
+    
+    
+    
+    </section>
+    </div>
+    
     
     
   );

@@ -18,9 +18,11 @@ export const EntryProvider: React.FC<{children : ReactNode}> = ({children}) => {
       }, []);
 
     const saveEntry = async (entry: Entry) => {
+      console.log(entry)
         const requestData = await axios.post<Entry>('http://localhost:3001/create/', entry)
         const newEntry = requestData.data
         setEntries([...entries, newEntry])
+        console.log(entry)
       }
 
     const updateEntry = async (id: string, entry: Entry) => {
